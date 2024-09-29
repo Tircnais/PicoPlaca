@@ -10,7 +10,7 @@ import jakarta.persistence.GenerationType;
 
 @Data
 @Entity
-@Table(name = "HorariosRestriccion")
+@Table(name = "horariosrestriccion")
 public class HorariosRestriccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "5196c959-bba5-4f70-aede-1bb5939384e8",
+		"name": "Entrevista Remeco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "8439675"
+	},
+	"item": [
+		{
+			"name": "Vehiculo",
+			"item": [
+				{
+					"name": "ListaVehiculos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8005/api/v1/Vehiculo/Lista"
+					},
+					"response": []
+				},
+				{
+					"name": "Vehiculo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8005/api/v1/Vehiculo/get/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Horario",
+			"item": [
+				{
+					"name": "Horarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8005/api/v1/HorarioRestriccion/Lista"
+					},
+					"response": []
+				},
+				{
+					"name": "Horario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8005/api/v1/HorarioRestriccion/get/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restriccion",
+			"item": [
+				{
+					"name": "Restricciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8005/api/v1/Restriccion/Lista"
+					},
+					"response": []
+				},
+				{
+					"name": "Restriccion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8005/api/v1/Restriccion/get/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

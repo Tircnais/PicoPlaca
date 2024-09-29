@@ -38,7 +38,7 @@ public class HorarioRestriccionControler {
     }
 
     // Trae registro especificado
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<HorariosRestriccion> getHorarioById(@PathVariable Long id) {
         try {
             HorariosRestriccion curso = objHorarioSs.GetHorarioById(id).orElseThrow(() -> new HorarioRestriccionNotFoundException(id));

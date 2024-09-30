@@ -1,0 +1,100 @@
+{% extends "master.html" %}
+{% block titulo %}
+	Home
+{% endblock %}
+
+{% block contenido %}
+    <h1 class="mt-4 text-center">Sistema de trafico</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Consulta de circulacion vehicular.</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="inputPassword6">Ingrese la placa</label>
+                <!-- Autocompletado con elementos HTML5 sin librerias adicionales -->
+                <input list='placas' class="form-control mx-sm-3" id="placa-input">
+                <datalist id='placas'>
+                    {% for elemento in resumen.Placas %}
+                    <option>{{ elemento.placa }}</option>
+                    {% endfor %}
+                </datalist>
+
+                <button type="button" class="btn btn-dark mb-2" id="id_search" onclick="ajaxConsulta()">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+          <p id="mensajeVehiculo"></p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Último digito</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Día</th>
+                            <th>Último digito</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>                        
+                        {% for elemento in resumen.Dias %}
+                        <tr>
+                            <th>{{ elemento.dia }}</th>
+                            <th>{{ elemento.ultimo_digito }}</th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    
+        $('#dataTable').DataTable({
+            "paging":   true,
+            "ordering": false,
+            "info":     false,
+            "order": [[ 3, "desc" ]]
+        });
+
+        function ajaxConsulta(){
+            // se extrae la placa ingresada
+            let value2send = document.getElementById("placa-input").value;
+            console.log("Valor ~ numeroplaca", value2send);
+            let ultimoDigito = value2send[value2send.length - 1];  // Se accede al último carácter
+            console.log('ultimoDigito\t', ultimoDigito);
+            var board_url = "{%  url 'ajaxCirculacion' %}";
+            $.ajax({
+                // initialize an AJAX request      
+                url: board_url,
+                type: "POST",
+                data: {
+                    'ultDigito': ultimoDigito,
+                },
+                datatype:'json',
+                success: function(data) {
+                    console.info('Retorno\t', data);
+                    var reatitulo = document.getElementById("mensajeVehiculo");
+                    reatitulo.innerHTML = '<b>'+data.msj+'</b>';
+                    
+                }
+            });
+        }
+    
+</script>
+{% endblock %}
